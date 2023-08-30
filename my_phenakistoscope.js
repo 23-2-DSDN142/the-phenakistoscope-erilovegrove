@@ -6,13 +6,13 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
-  pScope.load_image("quark" , "png");
-  pScope.load_image("dimple" , "png");
+  pScope.load_image("star" , "png");
+  pScope.load_image("eye" , "png");
 }
 
 function setup_layers(pScope){
 
-  new PLayer(null, 107, 115, 114);  //lets us draw the whole circle background, ignoring the boundaries, basically the colour of circle
+  new PLayer(null, 39, 52, 139);  //lets us draw the whole circle background, ignoring the boundaries, basically the colour of circle
 
   var layer4 = new PLayer(laa);
   layer4.mode( RING );
@@ -30,9 +30,9 @@ function setup_layers(pScope){
   layer2.mode( RING );
   layer2.set_boundary( 0, 400 );
 
-  var layer3 = new PLayer(hmm);
-  layer3.mode( RING );
-  layer3.set_boundary( 400, 1000 );
+  // var layer3 = new PLayer(hmm);
+  // layer3.mode( RING );
+  // layer3.set_boundary( 400, 1000 );
 
   
   
@@ -59,7 +59,7 @@ function laa(x, y, animation, pScope){
   // let backgroundArcStart = 270 - angleOffset; //270-18 = 252
   // let backgroundArcEnd = 270 + angleOffset; //292
 
-  fill(0, 0, 0);
+  fill(2, 3, 4);
   arc(x,y,1700,1700,252,292); // draws "pizza slice" in the background
 
 
@@ -71,7 +71,7 @@ function quarks(x, y, animation, pScope){
   scale(animation.frame*2);
   scale (0.5);
 
-  pScope.draw_image("quark",animation.wave(2)* 100,y);
+  pScope.draw_image("star",animation.wave(2)* 100,y);
 
 }
 
@@ -86,34 +86,34 @@ function dimples(x, y, animation, pScope){
   let backgroundArcStart2 = 270 - angleOffset2;
   let backgroundArcEnd2 = 270 + angleOffset2;
 
-  fill(234, 218, 247)
+  fill(24, 30, 54)
   arc(x,y,400,800,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
 
-  fill(245, 98, 12)
+  fill(39, 52, 139)
   arc(x,y,400,800,backgroundArcStart2,backgroundArcEnd2); // draws "pizza slice" in the background
 
-  scale (animation.wave()*1, 1);
-  pScope.draw_image("dimple",-10,-300-animation.wave()*50);
+  scale (0.5);
+  pScope.draw_image("eye",-10,-900-animation.wave()*50);
   
 
 }
 
-function hmm(x, y, animation, pScope){
-  //push()
-  scale(1)
-  if(animation.frame == 0){
-  pScope.draw_image("quark",x,y);
-  }
-  //pop()
-  translate(animation.frame, 0);
-  scale(animation.frame*2);
-  fill(196, 252, 255)
+// function hmm(x, y, animation, pScope){
+//   //push()
+//   scale(1)
+//   if(animation.frame == 0){
+//   pScope.draw_image("star",x,y);
+//   }
+//   //pop()
+//   translate(animation.frame, 0);
+//   scale(animation.frame*2);
+//   fill(196, 252, 255)
   
-  let ballSize  = 100 + (animation.wave(1)* 20)
-  let bouce = 50* animation.wave()
-  pScope.draw_image("dimple",150,800+bouce, ballSize);
+//   let ballSize  = 100 + (animation.wave(1)* 20)
+//   let bouce = 50* animation.wave()
+//   pScope.draw_image("dimple",150,800+bouce, ballSize);
   
   
 
-}
+// }
 
