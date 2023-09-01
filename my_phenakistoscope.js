@@ -14,21 +14,25 @@ function setup_layers(pScope){
 
   new PLayer(null, 39, 52, 139);  //lets us draw the whole circle background, ignoring the boundaries, basically the colour of circle
 
-  var layer4 = new PLayer(laa);
+  var layer4 = new PLayer(blackcircle);
   layer4.mode( RING );
   layer4.set_boundary( 800, 1000 );
   
-  var layer5 = new PLayer(mee);
+  var layer5 = new PLayer(blackoutersegment);
   layer5.mode( RING );
   layer5.set_boundary( 800, 1000 );
 
-  var layer1 = new PLayer(quarks); //this layer pertains to the faces function
+  var layer1 = new PLayer(stars); //this layer pertains to the faces function
   layer1.mode( SWIRL(6) );
   layer1.set_boundary( 200, 1000 );
 
-  var layer2 = new PLayer(dimples);
+  var layer2 = new PLayer(eyes);
   layer2.mode( RING );
   layer2.set_boundary( 0, 400 );
+
+  var layer5 = new PLayer(particles);
+  layer5.mode( SWIRL (5));
+  layer5.set_boundary (0, 400);
 
   // var layer3 = new PLayer(hmm);
   // layer3.mode( RING );
@@ -38,7 +42,7 @@ function setup_layers(pScope){
   
 }
 
-function mee(x, y, animation, pScope){
+function blackoutersegment(x, y, animation, pScope){
 
   // this is how you set up a background for a specific layer
   let angleOffset = (360 / SLICE_COUNT) / 4; //18
@@ -52,12 +56,12 @@ function mee(x, y, animation, pScope){
 
 }
 
-function laa(x, y, animation, pScope){
+function blackcircle(x, y, animation, pScope){
 
   // this is how you set up a background for a specific layer
-  // let angleOffset = (360 / SLICE_COUNT) / 2; //18
-  // let backgroundArcStart = 270 - angleOffset; //270-18 = 252
-  // let backgroundArcEnd = 270 + angleOffset; //292
+  let angleOffset = (360 / SLICE_COUNT) / 2; //18
+  let backgroundArcStart = 270 - angleOffset; //270-18 = 252
+  let backgroundArcEnd = 270 + angleOffset; //292
 
   fill(2, 3, 4);
   arc(x,y,1700,1700,252,292); // draws "pizza slice" in the background
@@ -66,7 +70,7 @@ function laa(x, y, animation, pScope){
 
 }
 
-function quarks(x, y, animation, pScope){
+function stars(x, y, animation, pScope){
   
   scale(animation.frame*2);
   scale (0.5);
@@ -75,7 +79,7 @@ function quarks(x, y, animation, pScope){
 
 }
 
-function dimples(x, y, animation, pScope){
+function eyes(x, y, animation, pScope){
 
   
   // this is how you set up a background for a specific layer
@@ -98,22 +102,23 @@ function dimples(x, y, animation, pScope){
 
 }
 
-// function hmm(x, y, animation, pScope){
-//   //push()
-//   scale(1)
-//   if(animation.frame == 0){
-//   pScope.draw_image("star",x,y);
-//   }
-//   //pop()
-//   translate(animation.frame, 0);
-//   scale(animation.frame*2);
-//   fill(196, 252, 255)
-  
-//   let ballSize  = 100 + (animation.wave(1)* 20)
-//   let bouce = 50* animation.wave()
-//   pScope.draw_image("dimple",150,800+bouce, ballSize);
-  
-  
+function particles (x, y, animation, pScope){
+ 
+  push ()
+  translate (100, 100)
+  rotate (360*animation.frame);
+  scale (2*animation.frame);
+  stroke (255);
+  strokeWeight (2);
+  line (0, 0, 0, 20);
+  pop ()
 
-// }
+  
+  strokeWeight (0,);
+  fill (100, 59, 143, 200*animation.frame);
+  scale (5*animation.frame);
+  ellipse (0, 10, 30, 30);
+  
+}
+
 
